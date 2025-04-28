@@ -1,0 +1,540 @@
+:root {
+  --color1: rgb(165, 151, 139);
+  --color2: rgb(195, 169, 149);
+  --color3: rgb(247, 178, 103);
+  --color4: rgb(247, 157, 101);
+  --color5: rgb(244, 132, 95);
+  --color6: rgb(242, 112, 89);
+  --color7: rgb(242, 92, 84);
+  --color8: rgb(165, 28, 48);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../img/background-mc.png'); /* Imagen de fondo */
+  background-attachment: fixed; /* Mantén el fondo estático */
+  background-position: center; /* Centra la imagen */
+  background-size: cover; /* Ajusta el fondo sin estirarlo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  position: relative; /* Necesario para usar el pseudo-elemento */
+}
+
+body::after {
+  content: ""; /* Crea un elemento vacío */
+  position: absolute; /* Posición absoluta para cubrir toda la página */
+  top: 0;
+  left: 0;
+  width: 100%; /* Cubre el ancho completo */
+  height: calc(100% + clamp(10px, 5vw, 30px)); /* Cubre el alto completo */
+  background-color: rgba(165, 28, 49, 0.321); /* Color plano transparente */
+  pointer-events: none; /* Permite interactuar con el contenido detrás */
+  z-index: -1; /* Envía la capa de filtro detrás del contenido */
+}
+
+
+.lluvia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* No afecta la interacción del usuario */
+  z-index: -1; /* Coloca la lluvia debajo de las secciones */
+}
+
+.gota {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5); /* Contraste para las gotas */
+  border-radius: 50%;
+  width: 2px;
+  height: 10px;
+  animation: caer 3s linear infinite; /* Añade dinamismo */
+}
+
+@keyframes caer {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+
+
+
+#inicio {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.perfil {
+  width: clamp(150px, 50%, 350px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid var(--color8);
+}
+
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(24px, 5vw, 48px);
+  color: var(--color8);
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7); /* Efecto de sombra */
+  animation: fadeIn 1s ease-in-out;
+
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.cualidades-redes {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin: clamp(10px, 5vw, 30px) clamp(20px, 10vw, 80px);
+  padding: clamp(5px, 2vw, 20px);
+  border: 2px solid var(--color8); /* Mantén el borde de color */
+  border-radius: 20px; /* Bordes curvos */
+  background-color: rgba(242, 112, 89, 0.75); /* Color semitransparente */
+}
+
+
+.cualidades {
+  flex: 0 0 auto; /* Ajusta la columna de cualidades para que no crezca ni encoja */
+  text-align: left; /* Alinea el contenido hacia la izquierda */
+}
+
+.redes-sociales {
+  flex: 0 0 auto; /* Ajusta la columna de redes para que no crezca ni encoja */
+  text-align: right; /* Alinea el contenido hacia la derecha */
+  align-self: center;
+  list-style: none; /* Elimina los estilos predeterminados de lista */
+  padding: 0;
+  margin: 0; /* Espaciado limpio */
+}
+
+.redes-sociales li {
+  margin-bottom: 10px; /* Espaciado entre cada elemento en la lista */
+}
+
+.red-social {
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  color: var(--color8); /* Color del texto */
+  font-weight: bold;
+  transition: color 0.2s ease-in-out; /* Efecto hover */
+}
+
+.red-social:hover {
+  color: var(--color5); /* Cambia de color al pasar el ratón */
+}
+
+
+@media (max-width: 768px) { /* Puedes ajustar este tamaño según tus necesidades */
+  .cualidades-redes {
+    flex-direction: column; /* Cambia la dirección del flex a columna */
+    align-items: center; /* Centra los elementos en la columna */
+  }
+
+  .cualidades, 
+  .redes-sociales {
+    text-align: center; /* Centraliza el texto para ambos divs */
+  }
+}
+
+
+
+#botones {
+  display: flex; /* Organiza los botones en fila */
+  justify-content: space-between; /* Coloca el espacio sobrante entre los botones */
+  align-items: center; /* Centra verticalmente */
+  margin: clamp(10px, 5vw, 30px) clamp(20px, 10vw, 80px); /* Mantén el margen responsivo */
+  box-sizing: border-box; /* Incluye el margen y padding dentro del ancho total */
+}
+
+.boton {
+  flex: 1; /* Distribución flexible dentro del contenedor */
+  margin: 0 20px; /* Espaciado entre botones */
+  padding: clamp(4px, 2vw, 15px) clamp(6px, 3vw, 20px); /* Espaciado interno */
+  text-align: center; /* Centrado del texto */
+  cursor: pointer; /* Indicador interactivo */
+  
+  /* Propiedades heredadas del botón que encontraste */
+  background-color: var(--color5); /* Mantén el color actual */
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: Inter, sans-serif;
+  font-size: clamp(10px, 2vw, 18px);
+  line-height: 24px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.boton:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 100%; /* Ajusta al tamaño del botón */
+  left: 0;
+  width: 100%; /* Ajusta al tamaño del botón */
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.boton:hover:after {
+  transform: translate(0, 0);
+}
+
+.boton:active {
+  background-color: #ffdeda; /* Efecto al presionar */
+  outline: none;
+}
+
+.boton:hover {
+  outline: none;
+}
+
+#programar {
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+#ilustrar {
+  margin-left: 10px;
+  margin-right: 0px;
+}
+
+section {
+  margin: clamp(10px, 5vw, 30px) clamp(20px, 10vw, 80px); /* Mismos márgenes responsivos */
+  padding: 20px;
+  border: 2px solid var(--color6); /* Mantén el borde de color */
+  border-radius: 7px; /* Bordes curvos */
+  background-color: rgba(244, 132, 95, 0.75); /* Relleno con color semitransparente */
+}
+
+
+section {
+  margin: clamp(10px, 5vw, 30px) clamp(20px, 10vw, 80px); /* Mismos márgenes responsivos */
+  padding: 20px;
+  border: 2px solid var(--color7); /* Mantén el borde de color */
+  border-radius: 7px; /* Bordes curvos */
+  background-color: rgba(242, 112, 89, 0.75); /* Relleno con color semitransparente */
+}
+
+/* Estilo para las secciones en posición impar */
+section:nth-child(odd) {
+  border: 2px solid var(--color7); /* Borde de un color */
+  border-radius: 7px; /* Bordes curvos */
+  background-color: rgba(242, 112, 89, 0.75); /* Relleno semitransparente */
+}
+
+/* Estilo para las secciones en posición par */
+section:nth-child(even) {
+  border: 2px solid var(--color6); /* Borde de otro color */
+  border-radius: 7px; /* Bordes curvos */
+  background-color: rgba(244, 132, 95, 0.75); /* Relleno semitransparente */
+}
+
+
+
+.sobre-mi {
+  padding: clamp(5px, 2vw, 20px);
+  border: 2px solid var(--color5);
+  border-radius: 10px;
+  background-color: rgba(247, 178, 103, 0.8);
+}
+
+.contenido {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+  align-items: center;
+}
+
+.contenido p {
+  flex: 1; /* El texto ocupa el espacio restante */
+  font-size: clamp(12px, 2vw, 20px); /* Tamaño del texto responsivo */
+  margin: 10px;
+}
+
+.imagen {
+  flex: 0 0 clamp(150px, 40%, 250px); /* Ancho de la imagen responsivo con un máximo del 40% */
+  max-width: 40%; /* No excede el 40% horizontal de la sección */
+  border-radius: 10px;
+  border: 2px solid var(--color8);
+}
+
+.imagen.izquierda {
+  order: -1; /* Posiciona la imagen a la izquierda */
+}
+
+.imagen.derecha {
+  order: 1; /* Posiciona la imagen a la derecha */
+}
+
+
+@media (max-width: 768px) { /* Ajustes para pantallas pequeñas */
+  .contenido {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+    text-align: center; /* Centra el contenido */
+  }
+
+  .imagen {
+    max-width: 100%; /* La imagen ocupa todo el ancho disponible */
+    order: -1; /* Asegura que las imágenes aparezcan antes que los textos */
+  }
+
+  /* Posicionamiento específico para cada imagen y su contenido */
+  .contenido:nth-of-type(1) .imagen {
+    order: -1; /* Imagen 1 sobre texto 1 */
+  }
+
+  .contenido:nth-of-type(2) .imagen {
+    order: -1; /* Imagen 2 sobre texto 2 */
+  }
+
+  .contenido:nth-of-type(3) .imagen {
+    order: -1; /* Imagen 3 sobre texto 3 */
+  }
+
+  .contenido:nth-of-type(4) .imagen {
+    order: -1; /* Imagen 4 sobre texto 4 */
+  }
+}
+
+
+/* Estado inicial de las secciones */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Efecto fluido */
+}
+
+/* Clase visible que se añade con JavaScript */
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+.proyecto {
+  margin-bottom: 30px; /* Espaciado entre proyectos */
+}
+
+.contenido {
+  display: flex; /* Organiza contenido en fila */
+  gap: 20px; /* Espaciado entre texto e imagen */
+  flex-wrap: wrap; /* Ajusta elementos en pantallas pequeñas */
+  align-items: center;
+}
+
+.texto {
+  flex: 1; /* Ocupa el espacio necesario */
+  text-align: center; /* Centra el contenido horizontalmente */
+  display: flex; /* Establece un contenedor flexible */
+  flex-direction: column; /* Organiza los elementos en columna */
+  align-items: center; /* Centra los elementos horizontalmente dentro del div */
+  justify-content: center; /* Centra los elementos verticalmente dentro del div */
+}
+
+.desctext{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.imagen-proyecto {
+  flex: 0 0 clamp(150px, 40%, 300px); /* Ancho responsivo */
+  max-width: 40%; /* No excede el 40% del contenedor */
+  border-radius: 10px;
+  border: 2px solid var(--color8);
+  object-fit: cover; /* Ajusta imagen al espacio sin deformarla */
+}
+
+.proyecto h3 {
+  font-size: 1.5rem;
+  color: var(--color8);
+  margin-bottom: 10px;
+}
+
+.proyecto ul {
+  padding-left: 20px;
+  margin: 0 0 10px;
+}
+
+.proyecto ul li {
+  list-style-type: disc; /* Marcadores en la lista */
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.proyecto p {
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+.separador {
+  border: 0;
+  height: 1px;
+  background-color: var(--color6);
+  margin: 20px 0;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+  .contenido {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    text-align: center; /* Centraliza texto */
+  }
+
+  .imagen-proyecto {
+    max-width: 100%; /* Ocupa todo el ancho */
+  }
+}
+
+
+a {
+  text-decoration: none; /* Elimina el subrayado */
+  color: black; /* Cambia el color al que desees */
+}
+
+a:hover {
+  color: var(--color8); /* Cambia el color cuando pasas el cursor */
+}
+
+
+.ilustraciones {
+  padding: clamp(5px, 2vw, 20px); /* Mismo padding que otras secciones */
+  margin: clamp(10px, 5vw, 30px) clamp(20px, 10vw, 80px); /* Margen similar */
+  border: 2px solid var(--color5); /* Borde coherente con el diseño */
+  border-radius: 10px; /* Bordes curvos */
+  background-color: rgba(247, 178, 103, 0.8); /* Fondo acorde */
+}
+
+.ilustraciones h2 {
+  font-size: 1.5rem; /* Tamaño consistente con otros títulos */
+  color: var(--color8); /* Color de texto */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.imagenes-grandes, .imagenes-pequenas {
+  display: flex; /* Filas horizontales */
+  gap: 20px; /* Espaciado entre imágenes */
+  justify-content: space-between; /* Distribuye uniformemente las imágenes */
+  flex-wrap: wrap; /* Permite ajustes en pantallas pequeñas */
+  margin-bottom: 10px;
+}
+
+.imagen-grande {
+  flex: 0 0 clamp(150px, 30%, 250px); /* Ajusta el ancho de las grandes */
+  max-width: 45%; /* Máximo permitido */
+  border: 2px solid var(--color8); /* Bordes */
+  border-radius: 10px;
+  object-fit: cover; /* Ajusta imagen al espacio sin deformarla */
+}
+
+.imagen-pequena {
+  flex: 0 0 clamp(100px, 20%, 150px); /* Ajusta el ancho de las pequeñas */
+  max-width: 30%; /* Máximo permitido */
+  border: 2px solid var(--color8); /* Bordes */
+  border-radius: 10px;
+  object-fit: cover; /* Ajusta imagen al espacio sin deformarla */
+}
+
+.historia {
+  margin-top: 20px; /* Espaciado superior */
+  font-size: clamp(10px, 2vw, 18px); /* Tamaño de texto consistente */
+  color: black; /* Color de texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+  text-align: center; /* Texto centrado */
+}
+
+@media (max-width: 768px) {
+  .imagenes-grandes, .imagenes-pequenas {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra elementos */
+  }
+
+  .imagen-grande, .imagen-pequena {
+    max-width: 90%; /* Ocupa todo el ancho disponible */
+  }
+}
+
+
+
+.contenido-texto {
+  display: flex; /* Contenedor flexible */
+  flex-direction: column; /* Elementos en columna */
+  gap: 20px; /* Espaciado uniforme entre párrafos */
+}
+
+.texto {
+  text-align: justify; /* Texto alineado a ambos lados */
+  font-size: clamp(10px, 2vw, 18px); /* Tamaño de fuente */
+  line-height: 1.5; /* Espaciado entre líneas */
+  color: black; /* Color del texto */
+}
+
+
+
+
+.imagenes-amigos {
+  display: grid; /* Usamos grid para organizar */
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en modo escritorio */
+  gap: 20px; /* Espaciado entre imágenes */
+  justify-items: center; /* Centra las imágenes en cada columna */
+  align-items: center; /* Asegura el centrado vertical */
+}
+
+.imagen-amiwi {
+  width: 100%; /* Ancho ajustable al contenedor */
+  max-width: 150px; /* Máximo tamaño permitido */
+  height: auto; /* Altura proporcional */
+  border: 2px solid var(--color8); /* Bordes */
+  border-radius: 10px; /* Bordes redondeados */
+  object-fit: cover; /* Ajusta las imágenes al espacio */
+}
+
+/* Asegura que el contenedor se adapte a su contenido */
+.imagenes-amigos {
+  height: auto; /* Permite que la altura crezca según el contenido */
+}
+
+/* Ajuste para pantallas móviles */
+@media (max-width: 768px) {
+  .imagenes-amigos {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en dispositivos pequeños */
+    gap: 20px; /* Espaciado entre imágenes */
+  }
+}
+
+
+
+
+.texto-amigos {
+  text-align: center; /* Centra el texto */
+  margin-top: 20px; /* Espaciado superior para separar las imágenes del texto */
+  font-size: 1rem; /* Tamaño de la fuente */
+  color: black; /* Color del texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+}
